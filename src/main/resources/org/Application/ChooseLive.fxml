@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Application.controller.LiveController">
+   <children>
+      <Button fx:id="LiveBtn" layoutX="14.0" layoutY="146.0" mnemonicParsing="false" onAction="#levelCheck" prefHeight="34.0" prefWidth="89.0" text="Live">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
+      <Text fx:id="nextTime1" layoutX="291.0" layoutY="43.0" text="nextTime">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Text>
+      <ImageView fitHeight="65.0" fitWidth="67.0" layoutX="132.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/banner4.jpg" />
+         </image>
+      </ImageView>
+      <Text fx:id="trainer" layoutX="137.0" layoutY="302.0" text="Trainer">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Text>
+      <Text fx:id="nextTime2" layoutX="291.0" layoutY="140.0" text="nextTime" wrappingWidth="75.4296875">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="nextTime3" layoutX="291.0" layoutY="229.0" text="nextTime">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="DateBox" layoutX="321.0" layoutY="284.0" prefWidth="150.0" />
+      <Button fx:id="BookBtn" layoutX="339.0" layoutY="339.0" mnemonicParsing="false" text="Book" onAction="#BookLive"/>
+      <Text fx:id="Target" layoutX="120.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="16.0" />
+         </font></Text>
+      <Text fx:id="BMI" layoutX="120.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="16.0" />
+         </font></Text>
+   </children>
+</AnchorPane>
