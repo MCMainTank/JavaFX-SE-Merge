@@ -18,6 +18,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.Application.Main;
 import org.Application.tools.csvTool;
 
 import java.io.File;
@@ -92,8 +93,8 @@ public class PlayerController implements Initializable {
     public void back(){
         Stage primaryStage = (Stage) button5.getScene().getWindow();
         try {
-            Parent root = FXMLLoader.load(getClass()
-                    .getResource("../fxml/videoMainPage.fxml"));
+            Parent root = FXMLLoader.load(Main.class
+                    .getResource("videoMainPage.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("Playing video");
             primaryStage.setScene(scene);

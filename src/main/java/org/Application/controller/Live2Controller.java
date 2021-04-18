@@ -1,16 +1,26 @@
 package org.Application.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import org.Application.Main;
 import org.Application.tools.csvTool;
 import org.Application.vo.Trainer;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Optional;
@@ -78,21 +88,40 @@ public class Live2Controller implements Initializable {
     }
 
     public void JoinLive(ActionEvent event){
-//        Platform.runLater(()->{
-//            Stage primaryStage = (Stage) JoinBtn.getScene().getWindow();
-//            //primaryStage.hide();
-//            try{
-//                // Read file fxml and draw interface. new controller initialized from root;
-//                Parent root = FXMLLoader.load(getClass()
-//                        .getResource("../fxml/Watch.fxml"));
-//
-//                primaryStage.setTitle("My WatchLive Application1");
-//                primaryStage.setScene(new Scene(root));
-//                primaryStage.show();
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-//        });
+        Platform.runLater(()->{
+            Stage primaryStage = (Stage) JoinBtn.getScene().getWindow();
+            //primaryStage.hide();
+            try{
+                File file = new File("D:\\_Works\\SoftwareE\\Vid\\CSIS01E01.mp4");
+                String url = file.toURI().toString();
+                // Read file fxml and draw interface. new controller initialized from root;
+                Parent root = FXMLLoader.load(Main.class
+                        .getResource("Player.fxml"));
+                Media media = new Media(url);
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                //Instantiating MediaView class
+                MediaView mediaView = new MediaView(mediaPlayer);
+//                mediaView.setMediaPlayer(mediaPlayer);
+                //by setting this property to true, the Video will be played
+
+                //setting group and scene
+//                Group groupRoot = new Group();
+//                groupRoot.getChildren().add(mediaView);
+//                Scene scene = new Scene(groupRoot, 500, 400);
+//                primaryStage.setScene(scene);
+                Scene scene = new Scene(root);
+//                ObservableList list =
+//                anchorPane.getChildren();
+//                Group groupRoot = new Group(mediaView);
+//                list.add(mediaView);
+                primaryStage.setTitle("Playing video");
+                primaryStage.setScene(scene);
+
+                primaryStage.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        });
     }
 
 }
