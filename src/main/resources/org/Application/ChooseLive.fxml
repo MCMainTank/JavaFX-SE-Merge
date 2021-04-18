@@ -39,7 +39,7 @@
          </font>
       </Text>
       <ChoiceBox fx:id="DateBox" layoutX="321.0" layoutY="284.0" prefWidth="150.0" />
-      <Button fx:id="BookBtn" layoutX="339.0" layoutY="339.0" mnemonicParsing="false" text="Book" onAction="#BookLive"/>
+      <Button fx:id="BookBtn" layoutX="339.0" layoutY="339.0" mnemonicParsing="false" onAction="#BookLive" text="Book" />
       <Text fx:id="Target" layoutX="120.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
             <Font size="16.0" />
@@ -48,5 +48,10 @@
          <font>
             <Font size="16.0" />
          </font></Text>
+      <Button fx:id="Videos" layoutX="14.0" layoutY="222.0" mnemonicParsing="false" onAction="#toVid" prefHeight="46.0" prefWidth="89.0" text="Videos">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

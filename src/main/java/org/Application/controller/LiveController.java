@@ -16,6 +16,7 @@ import org.Application.Main;
 import org.Application.tools.csvTool;
 import org.Application.vo.Trainer;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Optional;
@@ -44,6 +45,8 @@ public class LiveController implements Initializable {
     private Text Target;
     @FXML
     private Text BMI;
+    @FXML
+    private Button Videos;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,6 +80,7 @@ public class LiveController implements Initializable {
                 csvTool.write("CurBook",new String[]{lives[newValue.intValue() * 3],lives[1+newValue.intValue() * 3],lives[2+newValue.intValue() * 3]});
             }
         });
+
     }
 
     public void levelCheck(ActionEvent event){
@@ -120,6 +124,13 @@ public class LiveController implements Initializable {
                 e.printStackTrace();
             }
         });
+    }
+
+
+    public void toVid() throws IOException {
+            Stage newStage = (Stage)Videos.getScene().getWindow();
+            newStage.setScene(new Scene(FXMLLoader.load(Main.class
+                    .getResource("videoMainPage.fxml"))));
     }
 
 }

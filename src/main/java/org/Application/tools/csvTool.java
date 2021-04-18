@@ -3,9 +3,9 @@ package org.Application.tools;
 import com.opencsv.*;
 import org.Application.Main;
 import org.Application.launcher;
-import org.Application.vo.Live;
-import org.Application.vo.Student;
-import org.Application.vo.Trainer;
+import org.Application.vo.*;
+import com.csvreader.CsvReader;
+import com.csvreader.CsvWriter;
 
 import java.io.*;
 import java.net.URL;
@@ -208,4 +208,108 @@ public class csvTool {
         else return lives;
 
     }
+
+    public static Video[] selectVid(String text, int index){
+        String filePath = getDir()+"video.csv";
+        Video[] videos = new Video[100];
+        int i = 0;
+        int j = 0;
+        try {
+            // 创建CSV读对象
+            CsvReader csvReader = new CsvReader(filePath,'|');
+
+            // 读表头
+            csvReader.readHeaders();
+            //System.out.println(csvReader.getHeader(0)+"         "+csvReader.getHeader(1));
+            while (csvReader.readRecord() && j<100){
+                // 读一整行
+                //System.out.println(csvReader.getRawRecord());
+                // 读这行的特定列 get(column_index) 0-n-1
+                int Vid = Integer.parseInt(csvReader.get(0));
+                String name = csvReader.get(1);
+                String description = csvReader.get(2);
+                String vidPath = csvReader.get(3);
+                int Tid = Integer.parseInt(csvReader.get(4));
+                String category = csvReader.get(5);
+                System.out.println(Vid+name+description+vidPath+Tid+category);
+                if(index == 0){
+                    if(text == category){
+                        videos[i] = new Video(Vid,name,description,vidPath,Tid);
+                        i++;
+                    }
+                }
+//                else if(index ==1){
+//                    if(Tid == id){
+//                        videos[i] = new Video(Sid,Tid,date);
+//                        i++;
+//                    }
+//                }
+                j++;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(i==0) return null;
+        else return videos;
+    }
+
+    public static History[] searchHist(int id, int index){
+        String filePath = getDir()+"Hist.csv";
+        History[] histories = new History[100];
+        int i = 0;
+        int j = 0;
+        try {
+            // 创建CSV读对象
+            CsvReader csvReader = new CsvReader(filePath);
+
+            // 读表头
+            csvReader.readHeaders();
+            //System.out.println(csvReader.getHeader(0)+"         "+csvReader.getHeader(1));
+            while (csvReader.readRecord() && j<100){
+                // 读一整行
+                //System.out.println(csvReader.getRawRecord());
+                // 读这行的特定列 get(column_index) 0-n-1
+                int Hid = Integer.parseInt(csvReader.get(0));
+                int Sid = Integer.parseInt(csvReader.get(1));
+                int Vid = Integer.parseInt(csvReader.get(2));
+                String name = csvReader.get(3);
+                String vidPath = csvReader.get(4);
+                String category = csvReader.get(5);
+                String date = csvReader.get(6);
+                int Tid = Integer.parseInt(csvReader.get(7));
+                int deleted = Integer.parseInt(csvReader.get(8));
+                System.out.println(Hid+Sid+Vid+name+vidPath+Tid+category);
+                if(index == 0){
+                    if(id == Sid){
+                        histories[i] = new History(Hid,Sid,Vid,name,vidPath,category,date,Tid,deleted);
+                        i++;
+                    }
+                }
+//                else if(index ==1){
+//                    if(Tid == id){
+//                        videos[i] = new Video(Sid,Tid,date);
+//                        i++;
+//                    }
+//                }
+                j++;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(i==0) return null;
+        else return histories;
+    }
+
+    public static String readCurVid() throws IOException {
+        String filePath = getDir()+"CurVid.csv";
+        CsvReader csvReader = new CsvReader(filePath);
+        csvReader.readRecord();
+        String result=csvReader.get(0);
+        System.out.println(result);
+        return result;
+    }
+
+
 }
